@@ -35,7 +35,7 @@ torch.manual_seed(0)                       # Set random seed.
 upscale_factor   = 4                       # How many times the size of the high-resolution image in the data set is than the low-resolution image.
 device           = torch.device("cuda:0")  # Use the first GPU for processing by default.
 cudnn.benchmark  = True                    # If the dimension or type of the input data of the network does not change much, turn it on, otherwise turn it off.
-mode             = "train"                 # Run mode. Specific mode loads specific variables.
+mode             = "valid"                 # Run mode. Specific mode loads specific variables.
 exp_name         = "exp000"                # Experiment name.
 
 # ==============================================================================
@@ -101,7 +101,7 @@ if mode == "valid":
 
     # Load model.
     model      = Generator().to(device)
-    model_path = f"results/{exp_name}/g-best.pth"
+    model_path = f"weights/Weights_ESRGAN.pth"
 
     # Test data address.
     lr_dir     = f"data/Set5/LRbicx4"
