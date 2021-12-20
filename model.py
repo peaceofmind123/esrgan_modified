@@ -177,10 +177,11 @@ class Generator(nn.Module):
         out = self.trunk(out1)
         out2 = self.conv_block2(out)
         out = out1 + out2
-        out = self.upsampling(F.interpolate(out, scale_factor=2, mode="nearest"))
-        out = self.upsampling(F.interpolate(out, scale_factor=2, mode="nearest"))
-        out = self.conv_block3(out)
-        out = self.conv_block4(out)
+        # The upsampling layers and the subsequent layers are removed
+        #out = self.upsampling(F.interpolate(out, scale_factor=2, mode="nearest"))
+        #out = self.upsampling(F.interpolate(out, scale_factor=2, mode="nearest"))
+        #out = self.conv_block3(out)
+        #out = self.conv_block4(out)
 
         return out
 
