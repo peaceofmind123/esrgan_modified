@@ -163,7 +163,19 @@ def main() -> None:
 
     # Load model weights.
     state_dict = torch.load(model_path, map_location=device)
-    model.load_state_dict(state_dict)
+
+    # modified section begins
+
+    model_dict = model.state_dict()
+    pretrained_dict = {k: v for k, v in state_dict.items() if k in model_dict}
+    model_dict.update(pretrained_dict)
+    model.load_state_dict(pretrained_dict)
+
+    #model.load_state_dict(state_dict)
+
+    # modified section ends
+
+
     # Start the verification mode of the model.
     model.eval()
     # Turn on half-precision inference.
